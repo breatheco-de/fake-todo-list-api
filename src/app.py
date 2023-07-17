@@ -106,9 +106,6 @@ def update_task(username=None):
         return jsonify({"msg": f"The user {username} doesn't exists"}), 404
 
     todos = Todo.query.filter_by(user_id=user.id).all()
-    for todo in todos:
-        db.session.delete(todo)
-    db.session.commit()
 
     data = request.json
     if len(data) >= 1:
