@@ -107,6 +107,10 @@ def update_task(username=None):
 
     todos = Todo.query.filter_by(user_id=user.id).all()
 
+    for todo in todos:
+        db.session.delete(todo)
+    db.session.commit()
+    
     data = request.json
     if len(data) >= 1:
         for todo in data:
